@@ -1,21 +1,31 @@
-Espruino JavaScript for Microcontrollers
-========================================
+Espruino JavaScript for Cardputer
+=================================
 <pre>
- _____                 _
-|   __|___ ___ ___ _ _|_|___ ___
-|   __|_ -| . |  _| | | |   | . |
-|_____|___|  _|_| |___|_|_|_|___|
-          |_|
+ _____                 _            _____ _                                   _           
+|   __|___ ___ ___ _ _|_|___ ___   |     |_|___ ___ ___ ___ ___ _____ ___ _ _| |_ ___ ___ 
+|   __|_ -| . |  _| | | |   | . |  | | | | |  _|  _| . |  _| . |     | . | | |  _| -_|  _|
+|_____|___|  _|_| |___|_|_|_|___|  |_|_|_|_|___|_| |___|___|___|_|_|_|  _|___|_| |___|_|  
+          |_|                                                        |_|                  
 </pre>
 https://www.espruino.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [![Join the chat at https://gitter.im/espruino/Espruino](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/espruino/Espruino?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 About
 -----
 
-Espruino is a JavaScript interpreter for microcontrollers. It is designed for devices with as little as 128kB Flash and 8kB RAM.
+This is a [friendly fork](https://github.blog/developer-skills/github/the-friend-zone-friendly-forks-101/) of [Espruino](https://github.com/espruino/Espruino) for developing a custom firmware build for [Cardputer](https://docs.m5stack.com/en/core/Cardputer-Adv) devices.
 
-Please support Espruino by [ordering one of our official boards](https://www.espruino.com/Order) or [donating](https://www.espruino.com/Donate).
+Cardputer is a card-sized microcomputer featuring an ESP32-S3FN8 as its main controller.
 
+Espruino is a JavaScript interpreter for microcontrollers.
+
+> As an open source project, Espruino relies on sales and donations to support its development. So if you found it useful, please consider [ordering one of the official boards](https://www.espruino.com/Order) or [donating](https://www.espruino.com/Donate).
+
+Relevant links:
+
+- [Discussion](https://github.com/orgs/espruino/discussions/7918)
+- [Espruino on ESP32](https://www.espruino.com/ESP32)
+- [Building Custom Firmware](https://www.espruino.com/Building+Custom+Firmware)
+- [M5Cardputer](https://github.com/m5stack/M5Cardputer) C++ library (for the keyboard)
 
 Documentation
 ------------
