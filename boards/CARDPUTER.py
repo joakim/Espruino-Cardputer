@@ -72,8 +72,8 @@ info = {
      'BLUETOOTH',
      'NET',
      'TERMINAL',
-     'GRAPHICS',
      'LCD_SPI_UNBUF'
+     'GRAPHICS',
      'CRYPTO','SHA256','SHA512',
      'TLS',
      'TELNET',
@@ -85,11 +85,12 @@ info = {
      'DEFINES+=-DESP_STACK_SIZE=25000',
      'DEFINES+=-DJSVAR_MALLOC', # Allocate space for variables at jsvInit time
      'DEFINES+=-DDUMP_IGNORE_VARIABLES=\'"g\\0"\'',
-     'DEFINES+=-DESPR_GRAPHICS_INTERNAL',
-     'DEFINES+=-DESPR_GRAPHICS_SELF_INIT',
+#      'DEFINES+=-DESPR_GRAPHICS_INTERNAL',
+#      'DEFINES+=-DESPR_GRAPHICS_SELF_INIT',
+     'DEFINES+=-DUSE_LCD_SPI_UNBUF'
      'DEFINES+=-DUSE_FONT_6X8',
      'DEFINES+=-DESPR_USE_USB_SERIAL_JTAG', # See note above
-     'ESP32_FLASH_MAX=1572864'
+     'ESP32_FLASH_MAX=1572864',
    ]
  }
 };
