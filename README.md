@@ -1,11 +1,11 @@
 Espruino JavaScript for Cardputer
 =================================
 <pre>
- _____                 _            _____ _                                   _           
-|   __|___ ___ ___ _ _|_|___ ___   |     |_|___ ___ ___ ___ ___ _____ ___ _ _| |_ ___ ___ 
-|   __|_ -| . |  _| | | |   | . |  | | | | |  _|  _| . |  _| . |     | . | | |  _| -_|  _|
-|_____|___|  _|_| |___|_|_|_|___|  |_|_|_|_|___|_| |___|___|___|_|_|_|  _|___|_| |___|_|  
-          |_|                                                        |_|                  
+ _____                 _              _      _____ _____ _____ ____  _____ _____ _____ _____ _____ 
+|   __|___ ___ ___ _ _|_|___ ___    _| |_   |     |  _  | __  |    \|  _  |  |  |_   _|   __| __  |
+|   __|_ -| . |  _| | | |   | . |  |_   _|  |   --|     |    -|  |  |   __|  |  | | | |   __|    -|
+|_____|___|  _|_| |___|_|_|_|___|    |_|    |_____|__|__|__|__|____/|__|  |_____| |_| |_____|__|__|
+          |_|                                                                                      
 </pre>
 https://www.espruino.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [![Join the chat at https://gitter.im/espruino/Espruino](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/espruino/Espruino?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
