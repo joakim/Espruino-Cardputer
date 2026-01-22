@@ -86,7 +86,7 @@ devices = {
             'pin_sck' : 'D36',
             'pin_mosi' : 'D35',
             'pin_bl' : 'D38',
-            'spi_device' : 'EV_SPI1',
+            'spi_device' : 'EV_SPI2',
           },
   'SD' :  { 'pin_cs' :  'D12',
             'pin_di' :  'D14',
@@ -156,10 +156,10 @@ def get_pins():
   pinutils.findpin(pins, "PD12", True)["functions"]["SPI1_SCK"]=0;
   pinutils.findpin(pins, "PD13", True)["functions"]["SPI1_MISO"]=0;
   pinutils.findpin(pins, "PD11", True)["functions"]["SPI1_MOSI"]=0;
-  #  - SPI2 is decided by user
-  pinutils.findpin(pins, "PD4", True)["functions"]["SPI2_SCK"]=0;
-  pinutils.findpin(pins, "PD6", True)["functions"]["SPI2_MISO"]=0;
-  pinutils.findpin(pins, "PD7", True)["functions"]["SPI2_MOSI"]=0;
+  #  - SPI2 is used by the display
+  pinutils.findpin(pins, "PD36", True)["functions"]["SPI2_SCK"]=0;
+  pinutils.findpin(pins, "PD37", True)["functions"]["SPI2_MISO"]=0;
+  pinutils.findpin(pins, "PD35", True)["functions"]["SPI2_MOSI"]=0;
 
   pinutils.findpin(pins, "PD43", True)["functions"]["USART1_TX"]=0;
   pinutils.findpin(pins, "PD44", True)["functions"]["USART1_RX"]=0;
