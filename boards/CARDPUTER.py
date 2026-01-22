@@ -91,7 +91,7 @@ devices = {
             'pin_sck' : 'D36',
             'pin_mosi' : 'D35',
             'pin_bl' : 'D38',
-            'spi_device' : 'EV_SPI1',
+#             'spi_device' : 'EV_SPI1',
           },
 #   'SD' :  { 'pin_cs' :  'D12',
 #             'pin_di' :  'D14',
@@ -157,8 +157,8 @@ def get_pins():
 #   pinutils.findpin(pins, "PD2", True)["functions"]["I2C1_SDA"]=0;
 
   # SPI1, used by the display
-  pinutils.findpin(pins, "PD36", True)["functions"]["SPI1_SCK"]=0;
-  pinutils.findpin(pins, "PD35", True)["functions"]["SPI1_MOSI"]=0;
+#   pinutils.findpin(pins, "PD36", True)["functions"]["SPI1_SCK"]=0;
+#   pinutils.findpin(pins, "PD35", True)["functions"]["SPI1_MOSI"]=0;
 
   # SPI2, used by the microSD slot
 #   pinutils.findpin(pins, "PD40", True)["functions"]["SPI2_SCK"]=0;
