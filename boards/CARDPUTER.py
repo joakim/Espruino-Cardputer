@@ -147,10 +147,12 @@ boards = [ board_esp32 ];
 def get_pins():
   # ESP32-S3 has 45 Physical GPIO pins Numbered 0->21 and 26->48
   # see https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
-  # Cardputer has 0->21 and 33->48
+  # Cardputer's StampS3 has 0->15, 19-21, 33->44 and 46
   # see https://github.com/m5stack/M5Unified?tab=readme-ov-file#esp32s3-gpio-list
-  pins = pinutils.generate_pins(0,48)
-  # TODO: we could delete 22..32 as Cardputer doesn't seem to have those
+  pins = pinutils.generate_pins(0, 15)
+  pins = pinutils.generate_pins(19, 21)
+  pins.extend(pinutils.generate_pins(33, 44))
+  pinutils.findpin(pins, "PD46", False)
 
   # I2C (Grove)
 #   pinutils.findpin(pins, "PD1", True)["functions"]["I2C1_SCL"]=0;
