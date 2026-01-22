@@ -12,49 +12,10 @@
 # Buttons, and other in-built peripherals are. It is used to build documentation as well
 # as various source and header files for Espruino.
 # ----------------------------------------------------------------------------------------
-
-# ###########################################################
-# #      THIS IS BETA - IDF4 SUPPORT IS NOT READY YET       #
-# ###########################################################
-
-# A Note about the 'variables' parameter on ESP32 Builds
-# ------------------------------------------------------
 #
-# For the ESP32 build, the number of JsVars is governed by two factors:
-#     * Available memory
-#     * Maximum number of JsVars for the used JsVar format
-#
-# This setting will chose the optimum JsVar format for a given number
-# of JsVars.
-
-# If you add PSRAM to your ESP32 or compile with modules removed, you
-# may wish to select a value using this table:
-#
-# Value |  Max JsVars  | Bytes per JsVar | Maximum References |
-# ------+--------------+-----------------+--------------------+
-# 4095  |         4095 |              13 |               255  |
-# 8191  |         8191 |              13 |                15  |
-# 16383 |        16383 |              14 |               255  |
-# 65535 |        65535 |              16 |               255  |
-# ------+--------------+-----------------+--------------------+
-
-# CAUTION: Chosing 8191 only allows 15 references to a variable. This
-# may be too restrictive to run some code.
-
-# Using too large a JsVar format may limit how many JsVars can fit into
-# available memory. Using too small a JsVar format will under utilise
-# available memory.
-
-# MakeFile identifier ESPR_USE_USB_SERIAL_JTAG
-# --------------------------------------------------------------
-# The 'makefile' list in the 'info' dictionary below can define ESPR_USE_USB_SERIAL_JTAG using 'DEFINES+=-DESPR_USE_USB_SERIAL_JTAG'
-# where necessary.
-# By default, ESPR_USE_USB_SERIAL_JTAG is enabled below for the ESP32-S3.
-# This supports the case where the USB connector on the board is wired directly to the D+ and D- pins.
-# If the board uses a USB-to-UART converter, comment out the define so the UART console is used.
-# This method is introduced for fix to issue #2609 and replaces the previous method using the 'USB_CDC' identifier.
-
-
+# Cardputer
+# * Graphics initialised as 'g'
+# * FAT Filesystem via require("fs")
 
 import pinutils;
 info = {
@@ -68,17 +29,17 @@ info = {
  'build' : {
    'optimizeflags' : '-Og',
    'libraries' : [
-     'ESP32',
      'BLUETOOTH',
-     'NET',
-     'TERMINAL',
+     'CRYPTO', 'SHA256', 'SHA512',
+     'ESP32',
+     'FILESYSTEM',
      'GRAPHICS',
      'LCD_SPI_UNBUF',
-     'CRYPTO','SHA256','SHA512',
-     'TLS',
-     'TELNET',
      'NEOPIXEL',
-     'FILESYSTEM',
+     'NET',
+     'TELNET',
+     'TERMINAL',
+     'TLS',
    ],
    'makefile' : [
      'DEFINES+=-DESP_PLATFORM -DESP32',
@@ -98,7 +59,7 @@ chip = {
   'family'  : "ESP32_IDF4",
   'package' : "QFN56",
   'ram'     : 512,
-  'flash'   : 8192, # was: 0?
+  'flash'   : 0, # 8192?
   'speed'   : 240,
   'usart'   : 3,
   'spi'     : 2,
@@ -125,9 +86,15 @@ devices = {
             'pin_sck' : 'D36',
             'pin_mosi' : 'D35',
             'pin_bl' : 'D38',
+            'spi_device' : 'EV_SPI1',
+          },
+  'SD' :  { 'pin_cs' :  'D12',
+            'pin_di' :  'D14',
+            'pin_do' :  'D39',
+            'pin_clk' : 'D40',
           },
   'BAT' : {
-            'pin_voltage' : 'D10'
+            'pin_voltage' : 'D10',
           },
 };
 
