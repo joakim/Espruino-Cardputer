@@ -91,7 +91,7 @@ devices = {
             'pin_sck' : 'D36',
             'pin_mosi' : 'D35',
             'pin_bl' : 'D38',
-#             'spi_device' : 'EV_SPI1',
+            'spi_device' : 'EV_SPI1',
           },
 #   'SD' :  { 'pin_cs' :  'D12',
 #             'pin_di' :  'D14',
@@ -147,10 +147,9 @@ boards = [ board_esp32 ];
 def get_pins():
   # ESP32-S3 has 45 Physical GPIO pins Numbered 0->21 and 26->48
   # see https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
-  # Cardputer's StampS3 has 0->15, 19-21, 33->44 and 46
+  # Cardputer's StampS3 has 0->21, 33->44 and 46
   # see https://github.com/m5stack/M5Unified?tab=readme-ov-file#esp32s3-gpio-list
-  pins = pinutils.generate_pins(0, 15)
-  pins = pinutils.generate_pins(19, 21)
+  pins = pinutils.generate_pins(0, 21)
   pins.extend(pinutils.generate_pins(33, 44))
   pinutils.findpin(pins, "PD46", False)
 
@@ -159,8 +158,9 @@ def get_pins():
 #   pinutils.findpin(pins, "PD2", True)["functions"]["I2C1_SDA"]=0;
 
   # SPI1, used by the display
-#   pinutils.findpin(pins, "PD36", True)["functions"]["SPI1_SCK"]=0;
-#   pinutils.findpin(pins, "PD35", True)["functions"]["SPI1_MOSI"]=0;
+  pinutils.findpin(pins, "PD36", True)["functions"]["SPI1_SCK"]=0;
+  pinutils.findpin(pins, "PD35", True)["functions"]["SPI1_MOSI"]=0;
+  pinutils.findpin(pins, "PD16", True)["functions"]["SPI1_MISO"]=0;
 
   # SPI2, used by the microSD slot
 #   pinutils.findpin(pins, "PD40", True)["functions"]["SPI2_SCK"]=0;
