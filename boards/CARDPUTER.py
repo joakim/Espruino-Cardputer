@@ -46,15 +46,15 @@ info = {
      'DEFINES+=-DESP_STACK_SIZE=25000',
      'DEFINES+=-DJSVAR_MALLOC', # Allocate space for variables at jsvInit time
      'DEFINES+=-DDUMP_IGNORE_VARIABLES=\'"g\\0"\'',
-#       'DEFINES+=-DESPR_GRAPHICS_INTERNAL',
-#       'DEFINES+=-DESPR_GRAPHICS_SELF_INIT',
-      'DEFINES+=-DUSE_LCD_SPI_UNBUF',
-      'DEFINES+=-DSPISENDMANY_BUFFER_SIZE=1600', # 4096 for ESP32-S3?
-      'DEFINES+=-DUSE_FONT_6X8',
-#       'DEFINES+=-DLCD_SPI_BITRATE=55000000',
-#       'DEFINES+=-DESPR_TERMNINAL_NO_SCROLL',
-      'DEFINES+=-DESPR_USE_USB_SERIAL_JTAG',
-      'ESP32_FLASH_MAX=1572864',
+     'DEFINES+=-DESPR_GRAPHICS_INTERNAL',
+     'DEFINES+=-DESPR_GRAPHICS_SELF_INIT',
+     'DEFINES+=-DUSE_LCD_SPI_UNBUF',
+     'DEFINES+=-DSPISENDMANY_BUFFER_SIZE=1600', # 4096 for ESP32-S3?
+     'DEFINES+=-DUSE_FONT_6X8',
+     'DEFINES+=-DLCD_SPI_BITRATE=40000000',
+     'DEFINES+=-DESPR_TERMNINAL_NO_SCROLL',
+     'DEFINES+=-DESPR_USE_USB_SERIAL_JTAG',
+     'ESP32_FLASH_MAX=1572864',
    ]
  }
 };
@@ -91,7 +91,7 @@ devices = {
             'pin_sck' : 'D36',
             'pin_mosi' : 'D35',
             'pin_bl' : 'D38',
-#             'spi_device' : 'EV_SPI2',
+            'spi_device' : 'EV_SPI1',
           },
 #   'SD' :  { 'pin_cs' :  'D12',
 #             'pin_di' :  'D14',
@@ -147,28 +147,23 @@ boards = [ board_esp32 ];
 def get_pins():
   # ESP32-S3 has 45 Physical GPIO pins Numbered 0->21 and 26->48
   # see https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
+  # Cardputer has 0->21 and 33->48
+  # see https://github.com/m5stack/M5Unified?tab=readme-ov-file#esp32s3-gpio-list
   pins = pinutils.generate_pins(0,48)
-  # TODO: we could delete 22..25 as ESP32-S3 doesn't seem to have those
+  # TODO: we could delete 22..32 as Cardputer doesn't seem to have those
 
-  # I2C added for issue #2589 - all decided by user (not defined in specs)
-  pinutils.findpin(pins, "PD8", True)["functions"]["I2C1_SDA"]=0;
-  pinutils.findpin(pins, "PD9", True)["functions"]["I2C1_SCL"]=0;
-  pinutils.findpin(pins, "PD18", True)["functions"]["I2C2_SDA"]=0;
-  pinutils.findpin(pins, "PD19", True)["functions"]["I2C2_SCL"]=0;
+  # I2C (Grove)
+#   pinutils.findpin(pins, "PD1", True)["functions"]["I2C1_SCL"]=0;
+#   pinutils.findpin(pins, "PD2", True)["functions"]["I2C1_SDA"]=0;
 
-  # SPI added for issue #2601
-  #  - for SPI1 use pins that will bypass GPIO matrix (So Quicker) see esp-idf-4 /components/soc/esp32s3/include/soc/spi_pins.h
-  pinutils.findpin(pins, "PD12", True)["functions"]["SPI1_SCK"]=0;
-  pinutils.findpin(pins, "PD13", True)["functions"]["SPI1_MISO"]=0;
-  pinutils.findpin(pins, "PD11", True)["functions"]["SPI1_MOSI"]=0;
-  #  - SPI2 is used by the display
-  pinutils.findpin(pins, "PD36", True)["functions"]["SPI2_SCK"]=0;
-  pinutils.findpin(pins, "PD37", True)["functions"]["SPI2_MISO"]=0;
+  # SPI1, used by the display
+  pinutils.findpin(pins, "PD36", True)["functions"]["SPI1_SCK"]=0;
+  pinutils.findpin(pins, "PD37", True)["functions"]["SPI1_MISO"]=0;
 
-  pinutils.findpin(pins, "PD43", True)["functions"]["USART1_TX"]=0;
-  pinutils.findpin(pins, "PD44", True)["functions"]["USART1_RX"]=0;
-  pinutils.findpin(pins, "PD17", True)["functions"]["USART2_TX"]=0;
-  pinutils.findpin(pins, "PD18", True)["functions"]["USART2_RX"]=0;
+  # SPI2, used by the microSD slot
+#   pinutils.findpin(pins, "PD40", True)["functions"]["SPI2_SCK"]=0;
+#   pinutils.findpin(pins, "PD39", True)["functions"]["SPI2_MISO"]=0;
+#   pinutils.findpin(pins, "PD14", True)["functions"]["SPI2_MOSI"]=0;
 
   # everything is non-5v tolerant
   #for pin in pins:
