@@ -830,7 +830,7 @@ unsigned int jshSetSystemClock(JsVar *options) {
  * Convert an Espruino pin id to a native ESP32 pin id.
  */
 gpio_num_t pinToESP32Pin(Pin pin) {
-  if ( pin < 40 )
+  if ( pin < 49 )
     return pin + GPIO_NUM_0;
   jsError( "pinToESP32Pin: Unknown pin: %d", pin);
   return -1;
