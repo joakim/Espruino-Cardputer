@@ -158,7 +158,7 @@ def get_pins():
 
   # SPI1, used by the display
   pinutils.findpin(pins, "PD36", True)["functions"]["SPI1_SCK"]=0;
-  pinutils.findpin(pins, "PD37", True)["functions"]["SPI1_MISO"]=0;
+  pinutils.findpin(pins, "PD35", True)["functions"]["SPI1_MOSI"]=0;
 
   # SPI2, used by the microSD slot
 #   pinutils.findpin(pins, "PD40", True)["functions"]["SPI2_SCK"]=0;
