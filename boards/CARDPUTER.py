@@ -23,33 +23,38 @@ info = {
  'espruino_page_link'       : '',
  'default_console'          : 'EV_SERIAL1',
  'default_console_baudrate' : '115200',
- 'variables'                : 16383, # See note above
- 'io_buffer_size'           : 4096, # How big is the input buffer (in bytes). Default on nRF52 is 1024
+ 'variables'                : 16383,
+ 'io_buffer_size'           : 4096,
  'binary_name'              : 'espruino_%v_cardputer.bin',
  'build' : {
    'optimizeflags' : '-Og',
    'libraries' : [
-     'BLUETOOTH',
-     'CRYPTO', 'SHA256', 'SHA512',
      'ESP32',
-     'FILESYSTEM',
+     'BLUETOOTH',
+     'NET',
+     'TERMINAL',
      'GRAPHICS',
      'LCD_SPI_UNBUF',
-     'NEOPIXEL',
-     'NET',
-     'TELNET',
-     'TERMINAL',
+     'CRYPTO','SHA256','SHA512',
      'TLS',
+     'TELNET',
+     'NEOPIXEL',
+     'FILESYSTEM',
    ],
    'makefile' : [
      'DEFINES+=-DESP_PLATFORM -DESP32',
      'DEFINES+=-DESP_STACK_SIZE=25000',
      'DEFINES+=-DJSVAR_MALLOC', # Allocate space for variables at jsvInit time
-     'DEFINES+=-DESPR_GRAPHICS_INTERNAL -DESPR_GRAPHICS_SELF_INIT', # ensure graphics instantiates itself
-     'DEFINES+=-DUSE_FONT_6X8 -DSPISENDMANY_BUFFER_SIZE=1600 -DLCD_SPI_BITRATE=55000000 -DESPR_TERMNINAL_NO_SCROLL',
-     'DEFINES+=-DUSE_LCD_SPI_UNBUF',
-     'DEFINES+=-DESPR_USE_USB_SERIAL_JTAG', # See note above
-     'ESP32_FLASH_MAX=1572864',
+     'DEFINES+=-DDUMP_IGNORE_VARIABLES=\'"g\\0"\'',
+#       'DEFINES+=-DESPR_GRAPHICS_INTERNAL',
+#       'DEFINES+=-DESPR_GRAPHICS_SELF_INIT',
+      'DEFINES+=-DUSE_LCD_SPI_UNBUF',
+      'DEFINES+=-DSPISENDMANY_BUFFER_SIZE=1600', # 4096 for ESP32-S3?
+      'DEFINES+=-DUSE_FONT_6X8',
+#       'DEFINES+=-DLCD_SPI_BITRATE=55000000',
+#       'DEFINES+=-DESPR_TERMNINAL_NO_SCROLL',
+      'DEFINES+=-DESPR_USE_USB_SERIAL_JTAG',
+      'ESP32_FLASH_MAX=1572864',
    ]
  }
 };
@@ -59,7 +64,7 @@ chip = {
   'family'  : "ESP32_IDF4",
   'package' : "QFN56",
   'ram'     : 512,
-  'flash'   : 0, # 8192?
+  'flash'   : 8192,
   'speed'   : 240,
   'usart'   : 3,
   'spi'     : 2,
@@ -86,16 +91,16 @@ devices = {
             'pin_sck' : 'D36',
             'pin_mosi' : 'D35',
             'pin_bl' : 'D38',
-            'spi_device' : 'EV_SPI2',
+#             'spi_device' : 'EV_SPI2',
           },
-  'SD' :  { 'pin_cs' :  'D12',
-            'pin_di' :  'D14',
-            'pin_do' :  'D39',
-            'pin_clk' : 'D40',
-          },
-  'BAT' : {
-            'pin_voltage' : 'D10',
-          },
+#   'SD' :  { 'pin_cs' :  'D12',
+#             'pin_di' :  'D14',
+#             'pin_do' :  'D39',
+#             'pin_clk' : 'D40',
+#           },
+#   'BAT' : {
+#             'pin_voltage' : 'D10',
+#           },
 };
 
 # left-right, or top-bottom order
@@ -159,7 +164,6 @@ def get_pins():
   #  - SPI2 is used by the display
   pinutils.findpin(pins, "PD36", True)["functions"]["SPI2_SCK"]=0;
   pinutils.findpin(pins, "PD37", True)["functions"]["SPI2_MISO"]=0;
-  pinutils.findpin(pins, "PD35", True)["functions"]["SPI2_MOSI"]=0;
 
   pinutils.findpin(pins, "PD43", True)["functions"]["USART1_TX"]=0;
   pinutils.findpin(pins, "PD44", True)["functions"]["USART1_RX"]=0;
