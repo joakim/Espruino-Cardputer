@@ -149,9 +149,10 @@ def get_pins():
   # see https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf
   # Cardputer's StampS3 has 0->21, 33->44 and 46
   # see https://github.com/m5stack/M5Unified?tab=readme-ov-file#esp32s3-gpio-list
-  pins = pinutils.generate_pins(0, 21)
-  pins.extend(pinutils.generate_pins(33, 44))
-  pinutils.findpin(pins, "PD46", False)
+  pins = pinutils.generate_pins(0, 38)
+#   pins = pinutils.generate_pins(0, 21)
+#   pins.extend(pinutils.generate_pins(33, 44))
+#   pinutils.findpin(pins, "PD46", False)
 
   # I2C (Grove)
 #   pinutils.findpin(pins, "PD1", True)["functions"]["I2C1_SCL"]=0;
